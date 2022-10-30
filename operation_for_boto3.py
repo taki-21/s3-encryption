@@ -2,6 +2,7 @@
 # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.get_object
 
 import os
+import uuid
 
 import boto3
 from dotenv import load_dotenv
@@ -30,5 +31,8 @@ print('response: ', response)
 
 binary = response['Body'].read()
 
-with open('./tmp/a.jpg', "wb") as f:
+
+# 画像を保存
+img_path = 'tmp/' + str(uuid.uuid4()) + '.jpg'
+with open(img_path, "wb") as f:
     f.write(binary)
