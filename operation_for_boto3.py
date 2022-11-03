@@ -7,6 +7,7 @@ import uuid
 import boto3
 from dotenv import load_dotenv
 
+# .envファイルの内容を読み込む
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(verbose=True, dotenv_path=dotenv_path)
 
@@ -30,7 +31,6 @@ response = client.get_object(
 print('response: ', response)
 
 binary = response['Body'].read()
-
 
 # 画像を保存
 img_path = 'tmp/' + str(uuid.uuid4()) + '.jpg'

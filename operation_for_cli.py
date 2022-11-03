@@ -4,6 +4,7 @@ import uuid
 
 from dotenv import load_dotenv
 
+# .envファイルの内容を読み込む
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(verbose=True, dotenv_path=dotenv_path)
 
@@ -14,7 +15,6 @@ BUCKET_NAME = os.environ.get("BUCKET_NAME")
 KEY = os.environ.get("KEY")
 
 img_path = 'tmp/' + str(uuid.uuid4()) + '.jpg'
-
 
 response = subprocess.call(['aws', 's3api',
                             'get-object', img_path,
