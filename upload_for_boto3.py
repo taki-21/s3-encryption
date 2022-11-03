@@ -1,5 +1,4 @@
 import os
-import uuid
 
 import boto3
 from dotenv import load_dotenv
@@ -19,19 +18,14 @@ PROFILE = os.environ.get("PROFILE")
 session = boto3.Session(profile_name=PROFILE)
 client = session.client('s3')
 
-# s3バケットからオブジェクトを取得する
-response = client.get_object(
+# s3バケットへファイルをアップロードする
+response = client.put_object(
     Bucket=BUCKET_NAME,
     Key=KEY,
+    Body=KEY,
     SSECustomerAlgorithm='AES256',
     SSECustomerKey=SSE_CUSTOMER_KEY_BASE64,
     SSECustomerKeyMD5=SSE_CUSTOMER_KEY_MD5
 )
 
-# レスポンスの中身を読み込む
-binary = response['Body'].read()
-
-# 画像を保存
-img_path = 'tmp/' + str(uuid.uuid4()) + '.jpg'
-with open(img_path, "wb") as f:
-    f.write(binary)
+print(response)
