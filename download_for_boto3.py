@@ -28,6 +28,8 @@ response = client.get_object(
     SSECustomerKeyMD5=SSE_CUSTOMER_KEY_MD5
 )
 
+print(response)
+
 # レスポンスの中身を読み込む
 binary = response['Body'].read()
 

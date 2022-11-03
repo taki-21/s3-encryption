@@ -19,13 +19,14 @@ session = boto3.Session(profile_name=PROFILE)
 client = session.client('s3')
 
 # s3バケットへファイルをアップロードする
-response = client.put_object(
-    Bucket=BUCKET_NAME,
-    Key=KEY,
-    Body=KEY,
-    SSECustomerAlgorithm='AES256',
-    SSECustomerKey=SSE_CUSTOMER_KEY_BASE64,
-    SSECustomerKeyMD5=SSE_CUSTOMER_KEY_MD5
-)
+with open(KEY, 'rb') as image:
+    response = client.put_object(
+        Bucket=BUCKET_NAME,
+        Key=KEY,
+        Body=image,
+        SSECustomerAlgorithm='AES256',
+        SSECustomerKey=SSE_CUSTOMER_KEY_BASE64,
+        SSECustomerKeyMD5=SSE_CUSTOMER_KEY_MD5
+    )
 
 print(response)

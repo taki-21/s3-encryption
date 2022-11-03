@@ -10,7 +10,7 @@ echo $IMG_PATH
 
 aws s3api get-object $IMG_PATH \
   --bucket $BUCKET_NAME \
-  --key sample.jpg \
+  --key $KEY \
   --sse-customer-algorithm AES256 \
   --sse-customer-key $SSE_CUSTOMER_KEY_BASE64 \
   --sse-customer-key-md5 $SSE_CUSTOMER_KEY_MD5 \
