@@ -9,7 +9,7 @@ IMG_PATH="tmp/${UUID}.jpg"
 echo $IMG_PATH
 
 aws s3api get-object $IMG_PATH \
-  --bucket ssec-sample \
+  --bucket $BUCKET_NAME \
   --key sample.jpg \
   --sse-customer-algorithm AES256 \
   --sse-customer-key $SSE_CUSTOMER_KEY_BASE64 \

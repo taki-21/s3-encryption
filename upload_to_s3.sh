@@ -4,7 +4,7 @@
 source ./.env
 
 aws s3api put-object \
-  --bucket ssec-sample \
+  --bucket $BUCKET_NAME \
   --key sample.jpg \
   --body sample.jpg \
   --sse-customer-algorithm AES256 \
